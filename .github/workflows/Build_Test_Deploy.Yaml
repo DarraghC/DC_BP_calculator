@@ -1,1 +1,36 @@
+# name: Build Test Deploy -CI
+# env:
+#     MY_WEBAPP_NAME: DC_BMI_WEBAPP 
+#     #TODO: BELOW PATH
+#     AZURE_WEBAPP_PACKAGE_PATH: 'publish' # set this path to your web app project
+
+# on: [push]
+# jobs: 
+#   build:
+#     runs-on: windows-latest
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Setup .NET
+#       uses: actions/setup-dotnet@v2
+#       with:
+#         dotnet-version: 5.0.x
+#     - name: Build
+#       run : dotnet build --configuration Release
+#     - name: Unit-Test-Results
+#       uses: dorny/test-reporter@v1
+#       with: 
+#         artifacts: ''
+#         name: Bmi Tests
+#         path: '**.trx'
+#         reporter: dotnet.trx
+    
+#     - name: Publish
+#       run: dotnet publish -c Release -o '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp 
+    
+#     - name: Deploy to azure
+#       uses: azure/webapps-deploy@v2
+#       with: 
+#         app-name: ${{ env.MY_WEBAPP_NAME}}
+#         publish_profile: ${{ secrets.DC_BMI_WEBAPP_PUBLISH_KEY}}
+#         package: '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp
 
