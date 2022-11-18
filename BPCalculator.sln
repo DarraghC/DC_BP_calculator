@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BPCalculator", "BPCalculator\BPCalculator.csproj", "{5966DA6C-819D-4303-ADC7-425B8541EC84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_Project", "Tests_Project\Tests_Project.csproj", "{B561D3CF-534D-4C65-A0FF-2FB9C2F13557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unit_Tests_Project", "Tests_Project\Unit_Tests_Project.csproj", "{B561D3CF-534D-4C65-A0FF-2FB9C2F13557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acceptance_Tests_Project", "Acceptance_Tests_Project\Acceptance_Tests_Project.csproj", "{1869FFAD-37EF-4A96-9E3B-6762A8AB2196}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B561D3CF-534D-4C65-A0FF-2FB9C2F13557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B561D3CF-534D-4C65-A0FF-2FB9C2F13557}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B561D3CF-534D-4C65-A0FF-2FB9C2F13557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1869FFAD-37EF-4A96-9E3B-6762A8AB2196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1869FFAD-37EF-4A96-9E3B-6762A8AB2196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1869FFAD-37EF-4A96-9E3B-6762A8AB2196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1869FFAD-37EF-4A96-9E3B-6762A8AB2196}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
