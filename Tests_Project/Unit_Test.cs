@@ -1,7 +1,6 @@
 using BPCalculator;
 using NUnit.Framework;
 
-using BPCalculator;
 
 namespace Tests_Project
 {
@@ -15,8 +14,7 @@ namespace Tests_Project
         [Test]
         public void Test_Category_returns_Low()
         {
-            /*BloodPressure.Systolic.set = 80;
-            BloodPressure.Diastolic.set = 50;
+            /*BPCalculator bpCalc = new BPCalculator{ };
             Assert.AreEqual('Low', BloodPressure.BPCategory.Category.get(80, 50));*/
         }
 

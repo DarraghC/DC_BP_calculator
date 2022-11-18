@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace BPCalculator
@@ -6,6 +7,7 @@ namespace BPCalculator
     // BP categories
     public enum BPCategory
     {
+        [Display(Name = "Invalid Blood Pressure")] Invalid,
         [Display(Name="Low Blood Pressure")] Low,
         [Display(Name="Ideal Blood Pressure")]  Ideal,
         [Display(Name="Pre-High Blood Pressure")] PreHigh,
@@ -38,7 +40,7 @@ namespace BPCalculator
                 {
                     return BPCategory.Ideal;
                 }
-                else if ((Systolic <= 140) && (Diastolic <= 90))
+                else if ((Systolic < 140) && (Diastolic <= 90))
                 {
                     return BPCategory.PreHigh;
                 }
@@ -46,8 +48,7 @@ namespace BPCalculator
                 {
                     return BPCategory.High;
                 }
-               
-
+                return BPCategory.Invalid;
             }
         }
     }
