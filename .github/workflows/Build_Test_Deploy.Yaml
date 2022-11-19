@@ -1,36 +1,73 @@
-# name: Build Test Deploy -CI
-# env:
-#     MY_WEBAPP_NAME: DC_BMI_WEBAPP 
-#     #TODO: BELOW PATH
-#     AZURE_WEBAPP_PACKAGE_PATH: 'publish' # set this path to your web app project
+name: Build Test Deploy -CI
+env:
+    MY_WEBAPP_NAME: DC_BMI_WEBAPP 
+    #TODO: BELOW PATH
+    AZURE_WEBAPP_PACKAGE_PATH: "C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator\BPCalculator.csproj" # set this path to your web app project
+    #C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator.sln
 
-# on: [push]
-# jobs: 
-#   build:
-#     runs-on: windows-latest
-#     steps:
-#     - uses: actions/checkout@v3
-#     - name: Setup .NET
-#       uses: actions/setup-dotnet@v2
-#       with:
-#         dotnet-version: 5.0.x
-#     - name: Build
-#       run : dotnet build --configuration Release
-#     - name: Unit-Test-Results
-#       uses: dorny/test-reporter@v1
-#       with: 
-#         artifacts: ''
-#         name: Bmi Tests
-#         path: '**.trx'
-#         reporter: dotnet.trx
+on: [push]
+jobs:
+  #Setup and Build
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 5.0.x
+    - name: Build
+      run : dotnet build --configuration Release
+    - name: Unit-Test-Results
+      uses: dorny/test-reporter@v1
+      with: 
+        artifacts: ''
+        name: Bmi Tests
+        path: '**.trx'
+        reporter: dotnet.trx
+
+    # Analyse code
+    - name: Analyse code with SonarCloud
+      uses: sonarsource/sonarcloud-github-action@master
+      with:
+        projectBaseDir:
+        args: 
+          -Dsonar.organization=organization-darragh
+          -Dsonar.projectKey=organization-darragh
+          -Dsonar.python.coverage.reportPaths=coverage.xml
+          -Dsonar.verbose=true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
+
+    # Run Unit Tests
+    - name: Run Unit Tests
+      run: dotnet test Unit_Tests_Project/Unit_Tests_Project.csproj
+
+    # Run Specflow acceptance tests
+    - name: Run Acceptance Tests
+      run: dotnet test Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
+
+    # Create NuGet package
+    - name: Package for NuGet
+      run: dotnet pack BPCalculator/BPCalculator.csproj /p:PackageVersion=1.0.0 --configuration Release --output
+
+    # Push to Nuget repo
+
+    # Dependency Owasp checks
+
+    # Build Docker Image
+
+    # Upload to DockerHub 
     
-#     - name: Publish
-#       run: dotnet publish -c Release -o '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp 
+    - name: Publish
+      run: dotnet publish -c Release -o '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp 
     
-#     - name: Deploy to azure
-#       uses: azure/webapps-deploy@v2
-#       with: 
-#         app-name: ${{ env.MY_WEBAPP_NAME}}
-#         publish_profile: ${{ secrets.DC_BMI_WEBAPP_PUBLISH_KEY}}
-#         package: '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp
+    # Deploys to Azure
+    - name: Deploy to azure
+      uses: azure/webapps-deploy@v2
+      with: 
+        app-name: ${{ env.MY_WEBAPP_NAME}}
+        publish_profile: ${{ secrets.DC_BMI_WEBAPP_PUBLISH_KEY}}
+        package: '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp
 
