@@ -30,8 +30,8 @@ jobs:
     - name: Analyse code with SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
       with:
-        projectBaseDir:
-        args: 
+        projectBaseDir: .
+        args: >
           -Dsonar.organization=organization-darragh
           -Dsonar.projectKey=organization-darragh
           -Dsonar.python.coverage.reportPaths=coverage.xml
