@@ -5,7 +5,10 @@ env:
     AZURE_WEBAPP_PACKAGE_PATH: "C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator\BPCalculator.csproj" # set this path to your web app project
     #C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator.sln
 
-on: push
+on: 
+  push:
+    branches:
+      - 'main'
 jobs:
   #Setup and Build
   build:
