@@ -1,12 +1,11 @@
 name: Build Test Deploy -CI
 env:
-    MY_WEBAPP_NAME: DC_BMI_WEBAPP 
-    #TODO: BELOW PATH
-    AZURE_WEBAPP_PACKAGE_PATH: "C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator\BPCalculator.csproj" # set this path to your web app project
-    #C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator.sln
+  MY_WEBAPP_NAME: DC_BMI_WEBAPP 
+  #TODO: BELOW PATH
+  AZURE_WEBAPP_PACKAGE_PATH: "C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator\BPCalculator.csproj" # set this path to your web app project
+  #C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator.sln
 
-on: 
-  push:
+on: push
 
 jobs:
   #Setup and Build
