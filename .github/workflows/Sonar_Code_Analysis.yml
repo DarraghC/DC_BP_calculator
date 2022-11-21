@@ -1,4 +1,4 @@
-ame: Sonar Cloud Code Analysis
+name: Sonar Cloud Code Analysis
 
 on: 
   push:
