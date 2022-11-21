@@ -15,8 +15,8 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.organization=Darragh_Org
-            -Dsonar.projectKey=darraghclerkin
+            -Dsonar.organization=DarraghC
+            -Dsonar.projectKey=darraghc
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.verbose=true
         env:
