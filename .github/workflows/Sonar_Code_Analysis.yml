@@ -15,7 +15,7 @@ jobs:
         with:
           projectBaseDir: .
           args: >
-            -Dsonar.organization=DarraghC-org
+            -Dsonar.organization=darraghc-key
             -Dsonar.projectKey=DarraghC_DC_bmi_calculator
             -Dsonar.python.coverage.reportPaths=coverage.xml
             -Dsonar.verbose=true
