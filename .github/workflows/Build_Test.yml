@@ -20,8 +20,9 @@ jobs:
         with: 
           artifacts: ''
           name: Bmi Tests
+          list-tests: 'all'
           path: '**.trx'
-          reporter: dotnet.trx
+          reporter: dotnet-trx #format of the test results
 
       # # Analyse code
       # - name: Analyse code with SonarCloud
