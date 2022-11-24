@@ -1,6 +1,6 @@
-name: Build Test Deploy -CI
+name: Build Test Deploy
 
-on: 
+on:
   workflow_dispatch:
 
 jobs:
