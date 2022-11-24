@@ -6,7 +6,7 @@ namespace Acceptance_Tests_Project.StepDefinitions
     public sealed class CalculatorStepDefinitions
     {
 
-        private readonly BloodPressure bloodPressure = new ();
+        private readonly BloodPressure bloodPressure = new();
 
         private string? my_result;
 
