@@ -1,7 +1,7 @@
 name: Sonar Cloud Code Analysis
 
 on: 
-  push:
+  workflow_dispatch:
 
 jobs:
   analyze_code:
