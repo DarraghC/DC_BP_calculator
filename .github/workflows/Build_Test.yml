@@ -17,7 +17,7 @@ jobs:
         run : dotnet build --configuration Release
 
   # Analyse code
-  call-workflow-2-in-local-repo:
+  sonar-static-code-analysis:
     uses: ./.github/workflows/Sonar_Code_Analysis.yml
       # # Run Unit Tests
       # - name: Run Unit Tests
