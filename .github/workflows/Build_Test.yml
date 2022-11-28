@@ -18,7 +18,7 @@ jobs:
       
       # Run Unit Tests
       - name: Run Unit Tests
-        run: dotnet test Unit_Tests_Project/Unit_Tests_Project.csproj
+        run: dotnet test Tests_Project/Tests_Project.csproj
 
       # Run Specflow acceptance tests
       - name: Run Acceptance Tests
