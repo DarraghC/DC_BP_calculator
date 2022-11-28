@@ -23,6 +23,20 @@ jobs:
       # Run Specflow acceptance tests
       - name: Run Acceptance Tests
         run: dotnet test Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
+      
+      - name: Analyse code with SonarCloud
+        uses: sonarsource/sonarcloud-github-action@master
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.organization=darraghc-key
+            -Dsonar.projectKey=DarraghC_DC_bmi_calculator
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.verbose=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
+
 
       - name: Unit-Test-Results
         uses: dorny/test-reporter@v1
@@ -78,8 +92,8 @@ jobs:
 
 
   # Analyse code
-  sonar-static-code-analysis:
-    uses: ./.github/workflows/Sonar_Code_Analysis.yml
+  # sonar-static-code-analysis:
+  #   uses: ./.github/workflows/Sonar_Code_Analysis.yml
       
 
 
