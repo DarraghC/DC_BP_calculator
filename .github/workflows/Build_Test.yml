@@ -116,23 +116,23 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      # Dependency Owasp checks
-      - name: Dependency-check
-        uses: dependency-check/Dependency-Check_Action@main
-        id: Depcheck
-        with:
-          project: 'BPCalculator'
-          path: '.'
-          format: 'HTML'    
-          args: >
-            --failOnCVSS 8            
-          # fail if CVSS score (CVE scoring system) is High >=8
+      # # Dependency Owasp checks
+      # - name: Dependency-check
+      #   uses: dependency-check/Dependency-Check_Action@main
+      #   id: Depcheck
+      #   with:
+      #     project: 'BPCalculator'
+      #     path: '.'
+      #     format: 'HTML'    
+      #     args: >
+      #       --failOnCVSS 8            
+      #     # fail if CVSS score (CVE scoring system) is High >=8
             
-      - name: Upload Test results
-        uses: actions/upload-artifact@master
-        with:
-          name: Depcheck report
-          path: ${{github.workspace}}/reports
+      # - name: Upload Test results
+      #   uses: actions/upload-artifact@master
+      #   with:
+      #     name: Depcheck report
+      #     path: ${{github.workspace}}/reports
 
 
   # Analyse code
