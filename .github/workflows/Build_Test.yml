@@ -6,13 +6,13 @@ on:
 jobs:
   #Setup and Build
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 5.0.x
+          dotnet-version: 3.1.x
       - name: Build
         run : dotnet build --configuration Release
       
