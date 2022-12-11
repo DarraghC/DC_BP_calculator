@@ -17,12 +17,12 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test Tests_Project/Tests_Project.csproj
 
-      - name: Unit-Test-Results
+      - name: Test-Report
         uses: dorny/test-reporter@v1
         with: 
-          artifacts: ''
+          # artifacts: ''
           name: Unit Test report
-          list-tests: 'all'
+          # list-tests: 'all'
           path: ${{github.workspace}}/reports
           reporter: dotnet-trx # format of the test results
 
