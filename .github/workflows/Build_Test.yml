@@ -9,39 +9,22 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      # - name: Setup .NET
-      #   uses: actions/setup-dotnet@v2
-        # with:
-        #   dotnet-version: 6.0.x
       - name: Build
         run : dotnet build --configuration Release
       
-      #Static Code Analysis
-      # - name: Analyse code with SonarCloud
-      #   uses: sonarsource/sonarcloud-github-action@master
-      #   with:
-      #     projectBaseDir: .
-      #     args: >
-      #       -Dsonar.organization=darraghc-key
-      #       -Dsonar.projectKey=DarraghC_DC_bmi_calculator
-      #       -Dsonar.python.coverage.reportPaths=coverage.xml
-      #       -Dsonar.verbose=true
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN}}
-
+     
       # Run Unit Tests
       - name: Run Unit Tests
         run: dotnet test Tests_Project/Tests_Project.csproj
 
-      # - name: Unit-Test-Results
-      #   uses: dorny/test-reporter@v1
-      #   with: 
-      #     artifacts: ''
-      #     name: Unit Test report
-      #     list-tests: 'all'
-      #     path: ${{github.workspace}}/reports
-      #     reporter: dotnet-trx # format of the test results
+      - name: Unit-Test-Results
+        uses: dorny/test-reporter@v1
+        with: 
+          artifacts: ''
+          name: Unit Test report
+          list-tests: 'all'
+          path: ${{github.workspace}}/reports
+          reporter: dotnet-trx # format of the test results
 
       # Run Specflow acceptance tests
       - name: Run Acceptance Tests
