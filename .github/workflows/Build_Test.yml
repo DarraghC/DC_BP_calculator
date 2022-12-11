@@ -34,6 +34,19 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test Tests_Project/Tests_Project.csproj
 
+      # - name: Unit-Test-Results
+      #   uses: dorny/test-reporter@v1
+      #   with: 
+      #     artifacts: ''
+      #     name: Unit Test report
+      #     list-tests: 'all'
+      #     path: ${{github.workspace}}/reports
+      #     reporter: dotnet-trx # format of the test results
+
+      # Run Specflow acceptance tests
+      - name: Run Acceptance Tests
+        run: dotnet test Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
+
   sonarcloud_analysis:
 
     name: Sonarcloud Analysis
@@ -76,10 +89,6 @@ jobs:
         dotnet build
         ..sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
         
-
-      # # Run Specflow acceptance tests
-      # - name: Run Acceptance Tests
-      #   run: dotnet test Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
 
 
       # - name: Unit-Test-Results
