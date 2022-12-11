@@ -1,4 +1,4 @@
-name: Build Test
+name: Build-Test CI
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
       - name: Run Acceptance Tests
         run: dotnet test Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
       
-      
+
 
   sonarcloud_analysis:
 
@@ -145,19 +145,19 @@ jobs:
       # # Push to Nuget repo
 
     
-    - name: Publish
-      run: dotnet publish -c Release -o '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp 
+    # - name: Publish
+    #   run: dotnet publish -c Release -o '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp 
     
-    # Deploys to Azure
-    - name: Deploy to azure
-      uses: azure/webapps-deploy@v2
-      with: 
-        app-name: ${{ env.MY_WEBAPP_NAME}}
-        publish_profile: ${{ secrets.DC_BMI_WEBAPP_PUBLISH_KEY}}
-        package: '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp
-      env:
-        MY_WEBAPP_NAME: DC_BMI_WEBAPP 
-        #TODO: BELOW PATH
-        AZURE_WEBAPP_PACKAGE_PATH: "C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator\BPCalculator.csproj" # set this path to your web app project
-        #C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator.sln
+    # # Deploys to Azure
+    # - name: Deploy to azure
+    #   uses: azure/webapps-deploy@v2
+    #   with: 
+    #     app-name: ${{ env.MY_WEBAPP_NAME}}
+    #     publish_profile: ${{ secrets.DC_BMI_WEBAPP_PUBLISH_KEY}}
+    #     package: '${{ ebv.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp
+    #   env:
+    #     MY_WEBAPP_NAME: DC_BMI_WEBAPP 
+    #     #TODO: BELOW PATH
+    #     AZURE_WEBAPP_PACKAGE_PATH: "C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator\BPCalculator.csproj" # set this path to your web app project
+    #     #C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator.sln
 
