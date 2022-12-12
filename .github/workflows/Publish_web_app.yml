@@ -30,9 +30,9 @@ jobs:
         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
 
     - name: Log in with Azure
-        uses: azure/login@v1
-        with:
-          creds: '${{ secrets.AZURECREDENTIALS }}'
+      uses: azure/login@v1
+      with:
+        creds: '${{ secrets.AZURECREDENTIALS }}'S
     
     - name: Deploy to  https://dc-bmi-webapp.azurewebsites.net 
       uses: azure/webapps-deploy@v2
