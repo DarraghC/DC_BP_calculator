@@ -6,9 +6,9 @@ on:
 jobs:
   Publish:
     name: Publish web app
-    environment:
-      name: Staging
-      url: https://dc-bmi-webapp.azurewebsites.net 
+    # environment:
+    #   name: Staging
+    #   url: https://dc-bmi-webapp.azurewebsites.net 
 
     runs-on: ubuntu-latest
     
@@ -29,13 +29,14 @@ jobs:
       run: |
         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
     
-    - name: https://dc-bmi-webapp.azurewebsites.net 
+    - name: Deploy to  https://dc-bmi-webapp.azurewebsites.net 
       uses: azure/webapps-deploy@v2
       with:
         app-name: bp_calculator
-        publish-profile: ${{ secrets.AZURECREDENTIALS}}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
+        # publish-profile: ${{ secrets.AZURECREDENTIALS}}
         package: ${{env.DOTNET_ROOT}}/dotnetweb
-        slot-name: Staging
+        # slot-name: Staging
   
   # cd-dep-checks:
   #   uses: DarraghC/DC_BP_calculator/.github/workflows/CD.yaml
