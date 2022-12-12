@@ -4,7 +4,7 @@ env:
   URI: staging-url  
   
 on:
-  workflow_dispatch:                  # manually triggered
+  workflow_call:                  # manually triggered
 
 jobs:
 
@@ -21,11 +21,11 @@ jobs:
         path: TestResults/selenium.trx
 
 
-      - uses: actions/upload-artifact@v2
-        name: upload E2E report
-        with:
-          name: E2Ereport
-          path: /report/e2ereport.html
+      # - uses: actions/upload-artifact@v2
+      #   name: upload E2E report
+      #   with:
+      #     name: E2Ereport
+      #     path: /report/e2ereport.html
 
   dependency_check:
     runs-on: ubuntu-latest
@@ -47,8 +47,8 @@ jobs:
       - name: Upload Test results
         uses: actions/upload-artifact@master
         with:
-           name: Depcheck report
-           path: ${{github.workspace}}/reports
+          name: Depcheck report
+          path: /report/Depcheck.html
 
   zap_baseline_scan_pen_test:
 
