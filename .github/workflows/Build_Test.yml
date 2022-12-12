@@ -78,7 +78,8 @@ jobs:
         ..sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
   
   Pubish-web-app:
-    uses: DarraghC/DC_BP_calculator/.github/workflows/Publish_web_app.yml
+    uses: ./.github/workflows/Publish_web_app.yml
+
       # # Create NuGet package
       # - name: Package for NuGet
       #   run: dotnet pack BPCalculator/BPCalculator.csproj /p:PackageVersion=1.0.0 --configuration Release --output
