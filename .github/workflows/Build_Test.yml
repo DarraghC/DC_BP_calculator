@@ -78,7 +78,7 @@ jobs:
         ..sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
   
   pubish-web-app:
-    uses: ./.github/workflows/Publish_web_app.yml
+    uses: DarraghC/DC_BP_calculator/.github/workflows/Publish_web_app.yml
 
       # # Create NuGet package
       # - name: Package for NuGet

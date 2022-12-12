@@ -4,38 +4,42 @@ on:
   workflow_call:
 
 jobs:
-    Publish:
-      name: Publish web app
-    environment:
-      name: Staging
-      url: https://dc-bmi-webapp.azurewebsites.net 
+  Publish:
+    name: Publish web app
+  environment:
+    name: Staging
+    url: https://dc-bmi-webapp.azurewebsites.net 
 
-    runs-on: ubuntu-latest
-    
-    steps: 
-    - uses: actions/checkout@v2
+  runs-on: ubuntu-latest
+  
+  steps: 
+  - uses: actions/checkout@v2
 
-    - run: env
+  - run: env
 
-    - name: Setup .Net Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
-    
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+  - name: Setup .Net Core
+    uses: actions/setup-dotnet@v1
+    with:
+      dotnet-version: 5.0.x
+  
+  - name: Build with dotnet
+    run: dotnet build --configuration Release
 
-    - name: dotnet publish
-      run: |
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
-    
-    - name: https://dc-bmi-webapp.azurewebsites.net 
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: bp_calculator
-        publish-profile: ${{ secrets.AZURECREDENTIALS}}
-        package: ${{env.DOTNET_ROOT}}/dotnetweb
-        slot-name: Staging
+  - name: dotnet publish
+    run: |
+      dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
+  
+  - name: https://dc-bmi-webapp.azurewebsites.net 
+    uses: azure/webapps-deploy@v2
+    with:
+      app-name: bp_calculator
+      publish-profile: ${{ secrets.AZURECREDENTIALS}}
+      package: ${{env.DOTNET_ROOT}}/dotnetweb
+      slot-name: Staging
+  
+  # cd-dep-checks:
+  #   uses: DarraghC/DC_BP_calculator/.github/workflows/CD.yaml
+
     # name : Publish web app 
 
     #  runs-on: ubuntu-latest
