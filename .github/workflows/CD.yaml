@@ -1,7 +1,7 @@
 # name: Release-dep-check-e2e
 
 # env:
-#   URI: staging-url  
+#   URI: https://dc-bmi-webapp.azurewebsites.net
   
 # on:
 #   workflow_call:                  # manually triggered
