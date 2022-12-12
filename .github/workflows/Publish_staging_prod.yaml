@@ -1,75 +1,75 @@
-name: Publish to staging or production
+# name: Publish to staging or production
 
-on:
-  workflow_dispatch:
-    inputs:
-      releaseType:
-        description: 'Where to release (Staging or Production)'
-        required: true
-        default: 'staging'
-jobs:
-  staging:
-    name: Deploy to Staging
-    environment:
-      name: Staging
-      url: url for Staging goes here
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       releaseType:
+#         description: 'Where to release (Staging or Production)'
+#         required: true
+#         default: 'staging'
+# jobs:
+#   staging:
+#     name: Deploy to Staging
+#     environment:
+#       name: Staging
+#       url: url for Staging goes here
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
     
-    steps: 
-    - uses: actions/checkout@v2
+#     steps: 
+#     - uses: actions/checkout@v2
 
-    - run: env
+#     - run: env
 
-    - name: Setup .Net Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
+#     - name: Setup .Net Core
+#       uses: actions/setup-dotnet@v1
+#       with:
+#         dotnet-version: 5.0.x
     
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+#     - name: Build with dotnet
+#       run: dotnet build --configuration Release
 
-    - name: dotnet publish
-      run: |
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
+#     - name: dotnet publish
+#       run: |
+#         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
     
-    - name: 'Deploy to url'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: bp_calculator
-        publish-profile: ${{ secrets.AZURECREDENTIALS}}
-        package: ${{env.DOTNET_ROOT}}/dotnetweb
-        slot-name: staging
-  prod:
-    if: github.event.inputs.releaseType == 'prod'
-    name: Deploy to Production
-    environment:
-      name: Production
-      url: url for Production goes here
-      needs: [staging]
+#     - name: 'Deploy to url'
+#       uses: azure/webapps-deploy@v2
+#       with:
+#         app-name: bp_calculator
+#         publish-profile: ${{ secrets.AZURECREDENTIALS}}
+#         package: ${{env.DOTNET_ROOT}}/dotnetweb
+#         slot-name: staging
+#   prod:
+#     if: github.event.inputs.releaseType == 'prod'
+#     name: Deploy to Production
+#     environment:
+#       name: Production
+#       url: url for Production goes here
+#       needs: [staging]
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
     
-    steps: 
-    - uses: actions/checkout@v2
+#     steps: 
+#     - uses: actions/checkout@v2
 
-    - run: env
+#     - run: env
 
-    - name: Setup .Net Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
+#     - name: Setup .Net Core
+#       uses: actions/setup-dotnet@v1
+#       with:
+#         dotnet-version: 5.0.x
     
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-    - name: dotnet publish
-      run: |
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
+#     - name: Build with dotnet
+#       run: dotnet build --configuration Release
+#     - name: dotnet publish
+#       run: |
+#         dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
     
-    - name: 'Deploy to Production url'
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: bp_calculator
-        publish-profile: ${{ secrets.AZURECREDENTIALS}}
-        package: ${{env.DOTNET_ROOT}}/dotnetweb
-        slot-name: staging
+#     - name: 'Deploy to Production url'
+#       uses: azure/webapps-deploy@v2
+#       with:
+#         app-name: bp_calculator
+#         publish-profile: ${{ secrets.AZURECREDENTIALS}}
+#         package: ${{env.DOTNET_ROOT}}/dotnetweb
+#         slot-name: staging
