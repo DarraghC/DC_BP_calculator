@@ -17,12 +17,12 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test Tests_Project/Tests_Project.csproj
 
-      - name: Test-Report
-        uses: dorny/test-reporter@v1
-        with: 
-          name: DotNET Tests
-          # path: "**/test-results.trx" 
-          reporter: dotnet-trx
+      # - name: Test-Report
+      #   uses: dorny/test-reporter@v1
+      #   with: 
+      #     name: DotNET Tests
+      #     # path: "**/test-results.trx" 
+      #     reporter: dotnet-trx
       #     # artifacts: ''
       #     name: Unit Test report
       #     # list-tests: 'all'
@@ -76,68 +76,9 @@ jobs:
         ..sonar\scanner\dotnet-sonarscanner begin /k:"DarraghC_DC_bmi_calculator" /o:"darraghc-key" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io/"
         dotnet build
         ..sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
-        
-
-
-      # - name: Unit-Test-Results
-      #   uses: dorny/test-reporter@v1
-      #   with: 
-      #     artifacts: ''
-      #     name: Unit Test report
-      #     list-tests: 'all'
-      #     path: ${{github.workspace}}/reports
-      #     reporter: dotnet-trx # format of the test results
-
-      # Build Docker Image
-      # - name: Build the Docker image
-      #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
-      # # Upload to DockerHub 
-      # - name: Log in to Docker Hub
-      #   uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-      #   with:
-      #     username: ${{ secrets.DOCKER_USERNAME }}
-      #     password: ${{ secrets.DOCKER_PASSWORD }}
-      
-      # - name: Extract metadata (tags, labels) for Docker
-      #   id: meta
-      #   uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-      #   with:
-      #     images: my-docker-hub-namespace/my-docker-hub-repository
-        
-      # - name: Build and push Docker image
-      #   uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-      #   with:
-      #     context: .
-      #     push: true
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
-
-      # # Dependency Owasp checks
-      # - name: Dependency-check
-      #   uses: dependency-check/Dependency-Check_Action@main
-      #   id: Depcheck
-      #   with:
-      #     project: 'BPCalculator'
-      #     path: '.'
-      #     format: 'HTML'    
-      #     args: >
-      #       --failOnCVSS 8            
-      #     # fail if CVSS score (CVE scoring system) is High >=8
-            
-      # - name: Upload Test results
-      #   uses: actions/upload-artifact@master
-      #   with:
-      #     name: Depcheck report
-      #     path: ${{github.workspace}}/reports
-
-
-  # Analyse code
-  # sonar-static-code-analysis:
-  #   uses: ./.github/workflows/Sonar_Code_Analysis.yml
-      
-
-
+  
+  Pubish-web-app:
+    uses: DarraghC/DC_BP_calculator/.github/workflows/Publish_web_app.yml
       # # Create NuGet package
       # - name: Package for NuGet
       #   run: dotnet pack BPCalculator/BPCalculator.csproj /p:PackageVersion=1.0.0 --configuration Release --output
