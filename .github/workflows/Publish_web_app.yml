@@ -6,9 +6,9 @@ on:
 jobs:
   Publish:
     name: Publish web app
-  environment:
-    name: Staging
-    url: https://dc-bmi-webapp.azurewebsites.net 
+    environment:
+      name: Staging
+      url: https://dc-bmi-webapp.azurewebsites.net 
 
   runs-on: ubuntu-latest
   
