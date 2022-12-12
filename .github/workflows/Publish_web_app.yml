@@ -41,9 +41,10 @@ jobs:
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
         # publish-profile: ${{ secrets.AZURECREDENTIALS}}
         package: ${{env.DOTNET_ROOT}}/dotnetweb
-        # slot-name: Staging
   
   # cd-dep-checks:
+  #   name: Dep checks, e2e tests and pen tests
+  #   needs: Publish 
   #   uses: DarraghC/DC_BP_calculator/.github/workflows/CD.yaml
 
     # name : Publish web app 
