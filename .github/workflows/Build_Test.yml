@@ -79,6 +79,7 @@ jobs:
   
   pubish-web-app:
     name: Publish web app
+    needs: [build_and_unit_test, sonarcloud_analysis] 
     uses: ./.github/workflows/Publish_web_app.yml
 
       # # Create NuGet package
