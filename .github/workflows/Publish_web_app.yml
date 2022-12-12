@@ -1,7 +1,7 @@
 name: Publish azure web app
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
     Publish:
