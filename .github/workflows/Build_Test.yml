@@ -15,19 +15,16 @@ jobs:
      
       # Run Unit Tests
       - name: Run Unit Tests
-        run: dotnet test Tests_Project/Tests_Project.csproj
+        run: dotnet test Tests_Project/Tests_Project.csproj --no-restore --collect "Code coverage" -l:trx
 
-      - name: Test-Report
+      - name: Test Report
         uses: dorny/test-reporter@v1
         with: 
           name: UnitTests Report
-          # path: "**/test-results.trx" 
           reporter: dotnet-trx
-          artifacts: 'Test Results'
-          # name: Unit Test report
-          # list-tests: 'all'
-          path: ${{github.workspace}}/reports
-          # reporter: dotnet-trx # format of the test results
+          artifact: ''
+          path: "**.trx"
+        
 
       # Run Specflow acceptance tests
       - name: Run Acceptance Tests
