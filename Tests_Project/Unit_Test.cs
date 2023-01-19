@@ -26,7 +26,7 @@ namespace Tests_Project
         [Test]
         public void Test_Category_returns_Pre_High()
         {
-            BloodPressure bloodPressure = new BloodPressure{Systolic = 139, Diastolic = 90};
+            BloodPressure bloodPressure = new BloodPressure{Systolic = 139, Diastolic = 89};
             Assert.That(bloodPressure.Category, Is.EqualTo(BPCategory.PreHigh));
         }
 
