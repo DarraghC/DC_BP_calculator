@@ -1,0 +1,81 @@
+name: Publish azure web app
+
+on:
+  workflow_call:
+
+jobs:
+  Publish:
+    name: Publish web app
+    # environment:
+    #   name: Staging
+    #   url: https://dc-bmi-webapp.azurewebsites.net 
+
+    runs-on: ubuntu-latest
+    
+    steps: 
+    - uses: actions/checkout@v2
+
+    - run: env
+
+    - name: Setup .Net Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+
+    - name: dotnet publish
+      run: |
+        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/dotnetweb
+
+    - name: Log in with Azure
+      uses: azure/login@v1
+      with:
+        creds: '${{ secrets.AZURECREDENTIALS }}'
+    
+    - name: Deploy to  https://dc-bmi-webapp.azurewebsites.net 
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: Dc-Bmi-webapp
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE}}
+        # publish-profile: ${{ secrets.AZURECREDENTIALS}}
+        package: ${{env.DOTNET_ROOT}}/dotnetweb
+  
+  # cd-dep-checks:
+  #   name: Dep checks, e2e tests and pen tests
+  #   needs: Publish 
+  #   uses: DarraghC/DC_BP_calculator/.github/workflows/CD.yaml
+
+    # name : Publish web app 
+
+    #  runs-on: ubuntu-latest
+    
+    # steps: 
+    # - uses: actions/checkout@v2
+
+    # - run: env
+
+    # - name: Setup .Net Core
+    #   uses: actions/setup-dotnet@v1
+    #   with:
+    #     dotnet-version: 5.0.x
+    
+    # - name: Build with dotnet
+    #   run: dotnet build --configuration Release
+
+    # - name: Publish
+    #   run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp 
+    
+    # # Deploys to Azure
+    # - name: Deploy to azure
+    #   uses: azure/webapps-deploy@v2
+    #   with: 
+    #     app-name: ${{ env.MY_WEBAPP_NAME}}
+    #     publish_profile: ${{ secrets.DC_BMI_WEBAPP_PUBLISH_KEY}}
+    #     package: '${{ env.AZURE_WEBAPP_PACKAGE_PATH}}'/myapp
+    #   env:
+    #     MY_WEBAPP_NAME: DC_BMI_WEBAPP 
+    #     #TODO: BELOW PATH
+    #     AZURE_WEBAPP_PACKAGE_PATH: "C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator\BPCalculator.csproj" # set this path to your web app project
+    #     #C:\Users\darra\OneDrive\Desktop\CSD REPO MS VS\BPCalculator.sln
