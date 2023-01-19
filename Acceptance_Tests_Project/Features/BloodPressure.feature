@@ -15,7 +15,7 @@ Scenario: Calculate a Ideal BloodPressure
 
 Scenario: Calculate a PreHigh BloodPressure
 	Given the Systolic number is 139
-	And the Diastolic number is 90
+	And the Diastolic number is 89
 	When the blood pressure is calculated
 	Then the result should be PreHigh 
 

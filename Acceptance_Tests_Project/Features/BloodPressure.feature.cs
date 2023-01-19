@@ -190,7 +190,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("the Systolic number is 139", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 18
- testRunner.And("the Diastolic number is 90", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the Diastolic number is 89", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 19
  testRunner.When("the blood pressure is calculated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
