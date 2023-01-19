@@ -17,16 +17,16 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test Tests_Project/Tests_Project.csproj
 
-      # - name: Test-Report
-      #   uses: dorny/test-reporter@v1
-      #   with: 
-      #     name: DotNET Tests
-      #     # path: "**/test-results.trx" 
-      #     reporter: dotnet-trx
-      #     # artifacts: ''
-      #     name: Unit Test report
-      #     # list-tests: 'all'
-      #     path: ${{github.workspace}}/reports
+      - name: Test-Report
+        uses: dorny/test-reporter@v1
+        with: 
+          name: UnitTests Report
+          # path: "**/test-results.trx" 
+          reporter: dotnet-trx
+          artifacts: 'Test Results'
+          # name: Unit Test report
+          # list-tests: 'all'
+          path: ${{github.workspace}}/reports
           # reporter: dotnet-trx # format of the test results
 
       # Run Specflow acceptance tests
@@ -77,10 +77,10 @@ jobs:
         dotnet build
         ..sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
   
-  pubish-web-app:
-    name: Publish web app
-    needs: [build_and_unit_test, sonarcloud_analysis] 
-    uses: ./.github/workflows/Publish_web_app.yml
+  # pubish-web-app:
+  #   name: Publish web app
+  #   needs: [build_and_unit_test, sonarcloud_analysis] 
+  #   uses: ./.github/workflows/Publish_web_app.yml
 
       # # Create NuGet package
       # - name: Package for NuGet
