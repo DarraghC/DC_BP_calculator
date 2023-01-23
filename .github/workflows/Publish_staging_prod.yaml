@@ -2,11 +2,13 @@ name: Publish to staging or production
 
 on:
   workflow_dispatch:
+
     inputs:
       releaseType:
         description: 'Where to release (Staging or Production)'
         required: true
         default: 'staging'
+        
 jobs:
   staging:
     name: Deploy to Staging

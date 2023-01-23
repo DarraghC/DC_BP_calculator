@@ -9,7 +9,7 @@ jobs:
 
     env:
       UNIT_PROJECT_PATH: Tests_Project/Tests_Project.csproj
-      ACCEPTANCE_PROJECT_PATH: Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
+      # ACCEPTANCE_PROJECT_PATH: Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
 
     runs-on: windows-latest
     steps:
@@ -20,7 +20,7 @@ jobs:
      
       # Run Unit Tests
       - name: Run Unit Tests
-        run: dotnet test $PROJECT_PATH --no-restore --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test $UNIT_PROJECT_PATH --no-restore --logger "trx;LogFileName=test-results.trx"
         # --no-restore --collect "Code coverage" -l:trx
 
       - name: Test Report
