@@ -8,7 +8,8 @@ jobs:
   build_and_unit_test:
 
     env:
-      PROJECT_PATH: Tests_Project/Tests_Project.csproj
+      UNIT_PROJECT_PATH: Tests_Project/Tests_Project.csproj
+      ACCEPTANCE_PROJECT_PATH: Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
 
     runs-on: windows-latest
     steps:
@@ -19,7 +20,7 @@ jobs:
      
       # Run Unit Tests
       - name: Run Unit Tests
-        run: dotnet test $PROJECT_PATH --no-restore --collect "Code coverage" --loger"trx;LogFileName=test-results.trx"
+        run: dotnet test $PROJECT_PATH --no-restore --collect "Code coverage" --logger"trx;LogFileName=test-results.trx"
         # --no-restore --collect "Code coverage" -l:trx
 
       - name: Test Report
@@ -33,7 +34,7 @@ jobs:
 
       # Run Specflow acceptance tests
       - name: Run Acceptance Tests
-        run: dotnet test Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
+        run: dotnet test $ACCEPTANCE_PROJECT_PATH
       
 
 
