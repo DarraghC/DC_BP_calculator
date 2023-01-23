@@ -7,8 +7,8 @@ jobs:
   #Setup and Build
   build_and_unit_test:
 
-  env:
-    PROJECT_PATH: Tests_Project/Tests_Project.csproj
+    env:
+      PROJECT_PATH: Tests_Project/Tests_Project.csproj
 
     runs-on: windows-latest
     steps:
