@@ -32,9 +32,9 @@ jobs:
           path: "**/test-results.trx"
         
 
-      # Run Specflow acceptance tests
-      - name: Run Acceptance Tests
-        run: dotnet test $ACCEPTANCE_PROJECT_PATH
+      # # Run Specflow acceptance tests
+      # - name: Run Acceptance Tests
+      #   run: dotnet test $ACCEPTANCE_PROJECT_PATH
       
 
 

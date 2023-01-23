@@ -1,7 +1,7 @@
 name: Build Test Deploy -CI
 
 on:
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   #Setup and Build
