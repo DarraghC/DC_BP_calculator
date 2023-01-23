@@ -8,7 +8,7 @@ jobs:
   build_and_unit_test:
 
     env:
-      UNIT_PROJECT_PATH: Tests_Project/Tests_Project.csproj
+      UNIT_PROJECT_PATH: Tests_Project/Unit_Tests_Project.csproj
       # ACCEPTANCE_PROJECT_PATH: Acceptance_Tests_Project/Acceptance_Tests_Project.csproj
 
     runs-on: windows-latest
