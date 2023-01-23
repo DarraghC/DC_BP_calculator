@@ -6,6 +6,10 @@ on:
 jobs:
   #Setup and Build
   build_and_unit_test:
+
+  env:
+    PROJECT_PATH: Tests_Project/Tests_Project.csproj
+
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,7 +19,7 @@ jobs:
      
       # Run Unit Tests
       - name: Run Unit Tests
-        run: dotnet test Tests_Project/Tests_Project.csproj --no-restore --collect "Code coverage" --loger trx --results-directory ./TestResults
+        run: dotnet test $PROJECT_PATH --no-restore --collect "Code coverage" --loger"trx;LogFileName=test-results.trx"
         # --no-restore --collect "Code coverage" -l:trx
 
       - name: Test Report
@@ -23,8 +27,8 @@ jobs:
         with: 
           name: UnitTests Report
           reporter: dotnet-trx
-          artifact: ''
-          path: ${{ github.workspace }}/TestResults
+          # artifact: ''
+          path: "**/test-results.trx"
         
 
       # Run Specflow acceptance tests
